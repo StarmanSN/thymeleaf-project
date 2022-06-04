@@ -2,6 +2,7 @@ package ru.gb.thymeleafproject.entity;
 
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import ru.gb.thymeleafproject.entity.common.InfoEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,18 +10,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 @Table(name = "cart")
 @EntityListeners(AuditingEntityListener.class)
-public class Cart {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+public class Cart extends InfoEntity {
 
     @Column(name = "status")
     private String status = "not empty";

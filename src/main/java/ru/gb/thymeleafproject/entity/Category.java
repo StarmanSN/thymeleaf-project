@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import ru.gb.gbshopmay.entity.common.InfoEntity;
+import ru.gb.thymeleafproject.entity.common.InfoEntity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

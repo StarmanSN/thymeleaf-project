@@ -6,10 +6,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.gb.gbapimay.category.dto.CategoryDto;
-import ru.gb.gbshopmay.dao.CategoryDao;
-import ru.gb.gbshopmay.entity.Category;
-import ru.gb.gbshopmay.web.dto.mapper.CategoryMapper;
 import ru.gb.thymeleafproject.dao.CategoryDao;
+import ru.gb.thymeleafproject.entity.Category;
+import ru.gb.thymeleafproject.web.dto.mapper.CategoryMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -6,10 +6,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.gb.gbapimay.manufacturer.dto.ManufacturerDto;
-import ru.gb.gbshopmay.dao.ManufacturerDao;
-import ru.gb.gbshopmay.entity.Manufacturer;
-import ru.gb.gbshopmay.web.dto.mapper.ManufacturerMapper;
 import ru.gb.thymeleafproject.dao.ManufacturerDao;
+import ru.gb.thymeleafproject.entity.Manufacturer;
+import ru.gb.thymeleafproject.web.dto.mapper.ManufacturerMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;

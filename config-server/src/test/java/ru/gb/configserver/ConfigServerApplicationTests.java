@@ -1,12 +1,10 @@
-package ru.gb.thymeleafproject;
+package ru.gb.configserver;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-@Disabled
-class ThymeleafProjectApplicationTests {
+class ConfigServerApplicationTests {
 
     @Test
     void contextLoads() {
