@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.gbapimay.manufacturer.dto.ManufacturerDto;
@@ -15,15 +16,17 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/manufacturer")
+@RequestMapping("/manufacturer")
 @Slf4j
 public class ManufacturerRestController {
 
     private final ManufacturerService manufacturerService;
 
-    @GetMapping
-    public List<ManufacturerDto> getManufacturerList() {
-        return manufacturerService.findAll();
+    @GetMapping("/all")
+    public String getManufacturerList(Model model) {
+        model.addAttribute("manufacturers", manufacturerService.findAll());
+        return "manufacturer-list";
+
     }
 
     @GetMapping("/{manufacturerId}")
