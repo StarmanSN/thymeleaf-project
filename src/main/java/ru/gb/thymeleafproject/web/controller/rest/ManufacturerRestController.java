@@ -12,7 +12,6 @@ import ru.gb.gbapimay.manufacturer.dto.ManufacturerDto;
 import ru.gb.thymeleafproject.service.ManufacturerService;
 
 import java.net.URI;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
