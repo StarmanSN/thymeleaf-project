@@ -1,4 +1,4 @@
-package ru.gb.thymeleafproject.entity.security;
+package ru.gb.externalapi.entity.security;
 
 import lombok.*;
 

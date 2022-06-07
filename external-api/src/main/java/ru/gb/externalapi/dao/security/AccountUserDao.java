@@ -1,7 +1,7 @@
-package ru.gb.thymeleafproject.dao.security;
+package ru.gb.externalapi.dao.security;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.gb.thymeleafproject.entity.security.AccountUser;
+import ru.gb.externalapi.entity.security.AccountUser;
 
 import java.util.Optional;
 
