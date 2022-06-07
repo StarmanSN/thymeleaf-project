@@ -2,7 +2,6 @@ package ru.gb.externalapi.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.gbapimay.product.api.ProductGateway;
@@ -18,9 +17,8 @@ public class ProductRestController {
     private final ProductGateway productGateway;
 
     @GetMapping
-    public String getProductList(Model model) {
-        model.addAttribute("products", productGateway.getProductList());
-        return "product-list";
+    public List<ProductDto> getProductList() {
+        return productGateway.getProductList();
     }
 
     @GetMapping("/{productId}")
@@ -29,9 +27,8 @@ public class ProductRestController {
     }
 
     @PostMapping
-    public String handlePost(ProductDto productDto) {
-        productGateway.handlePost(productDto);
-        return "redirect:/api/v1/product";
+    public ResponseEntity<?> handlePost(@Validated @RequestBody ProductDto productDto) {
+        return productGateway.handlePost(productDto);
     }
 
     @PutMapping("/{productId}")
@@ -40,9 +37,8 @@ public class ProductRestController {
 
     }
 
-    @DeleteMapping("/delete/{productId}")
-    public String deleteById(@PathVariable("productId") Long id) {
+    @DeleteMapping("/{productId}")
+    public void deleteById(@PathVariable("productId") Long id) {
         productGateway.deleteById(id);
-        return "redirect:/product/all";
     }
 }

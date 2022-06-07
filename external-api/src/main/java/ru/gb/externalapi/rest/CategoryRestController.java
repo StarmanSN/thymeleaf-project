@@ -2,11 +2,12 @@ package ru.gb.externalapi.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.gbapimay.category.api.CategoryGateway;
 import ru.gb.gbapimay.category.dto.CategoryDto;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -16,9 +17,8 @@ public class CategoryRestController {
     private final CategoryGateway categoryGateway;
 
     @GetMapping
-    public String getCategoryList(Model model) {
-        model.addAttribute("categorys", categoryGateway.getCategoryList());
-        return "category-list";
+    public List<CategoryDto> getCategoryList() {
+        return categoryGateway.getCategoryList();
     }
 
     @GetMapping("/{categoryId}")
@@ -27,9 +27,8 @@ public class CategoryRestController {
     }
 
     @PostMapping
-    public String handlePost(CategoryDto categoryDto) {
-        categoryGateway.handlePost(categoryDto);
-        return "redirect:/api/v1/category";
+    public ResponseEntity<?> handlePost(@Validated @RequestBody CategoryDto categoryDto) {
+        return categoryGateway.handlePost(categoryDto);
     }
 
     @PutMapping("/{categoryId}")
@@ -38,9 +37,8 @@ public class CategoryRestController {
 
     }
 
-    @DeleteMapping("/delete/{categoryId}")
-    public String deleteById(@PathVariable("categoryId") Long id) {
+    @DeleteMapping("/{categoryId}")
+    public void deleteById(@PathVariable("categoryId") Long id) {
         categoryGateway.deleteById(id);
-        return "redirect:/category/all";
     }
 }
