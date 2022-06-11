@@ -28,6 +28,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
@@ -44,7 +45,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 
-    implementation files('/lib/gb-api-may-0.0.1-plain.jar')
+    implementation files('/lib/gb-api-may-0.0.3-plain.jar')
 }
 
 dependencyManagement {
