@@ -52,7 +52,7 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    implementation files('../lib/gb-api-may-0.0.3-plain.jar')
+    implementation files('../lib/gb-api-may-0.0.4-plain.jar')
 }
 
 dependencyManagement {

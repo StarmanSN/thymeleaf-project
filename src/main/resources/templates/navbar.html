@@ -32,14 +32,28 @@
                     <a class="nav-link" th:classappend="${activeTab == 'CategoryList' ? 'active' : ''}"
                        aria-current="page" th:href="@{/category/all}">Список категорий</a>
                 </li>
-                <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <form th:action="@{/logout}" method="post">
-                        <input type="submit" class="btn btn-danger" value="Выйти"/>
-                    </form>
+                <li>
+                    <div>
+                    __________________________________________________________________________________
+                    </div>
                 </li>
-                <li sec:authorize="isAnonymous()" class="nav-item">
-                    <a type="button" th:href="@{/login}" class="btn btn-success">Войти</a>
+                <li>
+                    <a class="nav-link" th:classappend="${activeTab == 'RegistrationForm' ? 'active' : ''}"
+                       aria-current="page" th:href="@{/authentication}">Зарегистрироваться</a>
                 </li>
+                <li>
+                    <a class="nav-link" th:classappend="${activeTab == 'LoginForm' ? 'active' : ''}"
+                       aria-current="page" th:href="@{/login}">Войти</a>
+                </li>
+                <!--                <li sec:authorize="isAnonymous()" class="nav-item">-->
+                <!--                    <a type="button" th:href="@{/login}" class="btn btn-success">Войти</a>-->
+                <!--                </li>-->
+                <!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
+                <!--                    <form th:action="@{/logout}" method="post">-->
+                <!--                        <input type="submit" class="btn btn-danger" value="Выйти"/>-->
+                <!--                    </form>-->
+                <!--                </li>-->
+
             </ul>
         </div>
     </div>
