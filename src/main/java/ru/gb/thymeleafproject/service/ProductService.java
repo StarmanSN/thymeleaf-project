@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import ru.gb.gbapimay.product.dto.ProductDto;
 import ru.gb.thymeleafproject.dao.CartDao;
 import ru.gb.thymeleafproject.dao.ProductDao;
 import ru.gb.thymeleafproject.entity.Cart;
 import ru.gb.thymeleafproject.entity.Product;
 import ru.gb.thymeleafproject.entity.enums.Status;
+import ru.gb.thymeleafproject.service.jms.JmsSenderService;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -26,6 +29,8 @@ public class ProductService {
 
     private final ProductDao productDao;
     private final CartDao cartDao;
+    private final JmsSenderService jmsSenderService;
+    private final ProductDto productDto;
 
     @Transactional(propagation = Propagation.NEVER, isolation = Isolation.DEFAULT)
     public long count() {
@@ -42,6 +47,9 @@ public class ProductService {
                 productFromDB.setCost(product.getCost());
                 productFromDB.setManufactureDate(product.getManufactureDate());
                 productFromDB.setStatus(product.getStatus());
+                BigDecimal oldCost = productDto.getCost();
+                BigDecimal newCost = productDto.getCost();
+                jmsSenderService.sendAndReceiveMessage(oldCost.toString(), newCost.toString());
                 return productDao.save(productFromDB);
             }
         }

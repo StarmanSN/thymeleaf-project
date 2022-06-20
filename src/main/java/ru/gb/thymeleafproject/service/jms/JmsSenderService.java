@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.gb.thymeleafproject.config.JmsConfig;
 import ru.gb.thymeleafproject.model.CategoryChangeMessage;
+import ru.gb.thymeleafproject.model.CostChangeMessage;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -25,11 +26,11 @@ public class JmsSenderService {
     private final ObjectMapper objectMapper;
 
     @Scheduled(fixedRate = 5000)
-    public void sendAndReceiveMessage(String oldTitle, String newTitle) {
-        CategoryChangeMessage message = CategoryChangeMessage.builder()
-                .message("Category changed")
-                .oldTitle(oldTitle)
-                .newTitle(newTitle)
+    public void sendAndReceiveMessage(String oldPrice, String newPrice) {
+        CostChangeMessage message = CostChangeMessage.builder()
+                .message("Cost changed")
+                .oldCost(oldPrice)
+                .newCost(newPrice)
                 .build();
 
         Message receivedMessage = jmsTemplate.sendAndReceive(JmsConfig.GB_QUEUE_RECEIVE, new MessageCreator() {
@@ -38,7 +39,7 @@ public class JmsSenderService {
 
                 try {
                     TextMessage textMessage = session.createTextMessage(objectMapper.writeValueAsString(message));
-                    textMessage.setStringProperty("_type", CategoryChangeMessage.class.getCanonicalName());
+                    textMessage.setStringProperty("_type", CostChangeMessage.class.getCanonicalName());
                     log.warn("Sending message");
 
                     return textMessage;

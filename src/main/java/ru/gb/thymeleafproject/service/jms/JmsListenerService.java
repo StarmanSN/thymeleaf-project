@@ -10,6 +10,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 import ru.gb.thymeleafproject.config.JmsConfig;
 import ru.gb.thymeleafproject.model.CategoryChangeMessage;
+import ru.gb.thymeleafproject.model.CostChangeMessage;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -23,12 +24,12 @@ public class JmsListenerService {
     private final MailService mailService;
 
     @JmsListener(destination = JmsConfig.GB_QUEUE_RECEIVE)
-    public void listen(@Payload CategoryChangeMessage categoryChangeMessage,
+    public void listen(@Payload CostChangeMessage costChangeMessage,
                        @Headers MessageHeaders messageHeaders, Message message) {
-        CategoryChangeMessage responseMessage = CategoryChangeMessage.builder()
+        CostChangeMessage responseMessage = CostChangeMessage.builder()
                 .message("Response from listener")
                 .build();
-        log.info("Message {} have been gotten", categoryChangeMessage);
+        log.info("Message {} have been gotten", costChangeMessage);
         try {
             jmsTemplate.convertAndSend(message.getJMSReplyTo(), responseMessage);
         } catch (JMSException e) {
