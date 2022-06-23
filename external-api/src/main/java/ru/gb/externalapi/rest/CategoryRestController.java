@@ -17,7 +17,7 @@ public class CategoryRestController {
 
     @GetMapping
     public String getCategoryList(Model model) {
-        model.addAttribute("categorys", categoryGateway.getCategoryList());
+        model.addAttribute("categories", categoryGateway.getCategoryList());
         return "category-list";
     }
 
