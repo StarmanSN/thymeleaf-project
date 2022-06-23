@@ -24,13 +24,13 @@
                     <a class="nav-link" th:classappend="${activeTab == 'ProductList' ? 'active' : ''}"
                        aria-current="page" th:href="@{/product/all}">Список продуктов</a>
                 </li>
-                <li sec:authorize="hasAuthority('product.create')" class="nav-item">
-                    <a class="nav-link" th:classappend="${activeTab == 'ProductForm' ? 'active' : ''}"
-                       th:href="@{/product}">Добавить продукт</a>
+                <li>
+                    <a class="nav-link" th:classappend="${activeTab == 'ManufacturerList' ? 'active' : ''}"
+                       aria-current="page" th:href="@{/manufacturer/all}">Список производителей</a>
                 </li>
-                <li sec:authorize="hasAuthority('product.add')" class="nav-item">
-                    <a class="nav-link" th:classappend="${activeTab == 'Cart' ? 'active' : ''}"
-                       th:href="@{/product/cart-list}">Корзина</a>
+                <li>
+                    <a class="nav-link" th:classappend="${activeTab == 'CategoryList' ? 'active' : ''}"
+                       aria-current="page" th:href="@{/category/all}">Список категорий</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
                     <form th:action="@{/logout}" method="post">

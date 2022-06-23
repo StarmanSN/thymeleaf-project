@@ -2,12 +2,11 @@ package ru.gb.externalapi.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.gbapimay.manufacturer.api.ManufacturerGateway;
 import ru.gb.gbapimay.manufacturer.dto.ManufacturerDto;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,8 +16,9 @@ public class ManufacturerRestController {
     private final ManufacturerGateway manufacturerGateway;
 
     @GetMapping
-    public List<ManufacturerDto> getManufacturerList() {
-        return manufacturerGateway.getManufacturerList();
+    public String getManufacturerList(Model model) {
+        model.addAttribute("manufacturers", manufacturerGateway.getManufacturerList());
+        return "manufacturer-list";
     }
 
     @GetMapping("/{manufacturerId}")
@@ -27,8 +27,9 @@ public class ManufacturerRestController {
     }
 
     @PostMapping
-    public ResponseEntity<?> handlePost(@Validated @RequestBody ManufacturerDto manufacturerDto) {
-        return manufacturerGateway.handlePost(manufacturerDto);
+    public String handlePost(ManufacturerDto manufacturerDto) {
+        manufacturerGateway.handlePost(manufacturerDto);
+        return "redirect:/api/v1/manufacturer";
     }
 
     @PutMapping("/{manufacturerId}")
@@ -37,8 +38,9 @@ public class ManufacturerRestController {
 
     }
 
-    @DeleteMapping("/{manufacturerId}")
-    public void deleteById(@PathVariable("manufacturerId") Long id) {
+    @DeleteMapping("/delete/{manufacturerId}")
+    public String deleteById(@PathVariable("manufacturerId") Long id) {
         manufacturerGateway.deleteById(id);
+        return "redirect:/manufacturer/all";
     }
 }
