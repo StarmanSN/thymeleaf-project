@@ -10,7 +10,24 @@ spring:
       label: ${SPRING_CLOUD_CONFIG_LABEL:master}
       username: ${SPRING_CLOUD_CONFIG_USERNAME:geek_user}
       password: ${SPRING_CLOUD_CONFIG_PASSWORD:geek_pass}
+
   datasource:
     url: "jdbc:postgresql://localhost:5432/gb_shop"
     username: "geek"
     password: "geek"
+
+  artemis:
+    user: "sambu"
+    password: "sambu"
+  mail:
+    host: '.gmail.com'
+    port: 587
+    username: ''
+    password: ''
+    properties:
+      mail:
+        smtp:
+          auth: 'true'
+          starttls:
+            enable: 'true'
+

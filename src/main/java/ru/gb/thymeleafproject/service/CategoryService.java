@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.gb.gbapimay.category.dto.CategoryDto;
 import ru.gb.thymeleafproject.dao.CategoryDao;
 import ru.gb.thymeleafproject.entity.Category;
+import ru.gb.thymeleafproject.service.jms.JmsSenderService;
 import ru.gb.thymeleafproject.web.dto.mapper.CategoryMapper;
 
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 public class CategoryService {
     private final CategoryDao categoryDao;
     private final CategoryMapper categoryMapper;
-    
+    private final JmsSenderService jmsSenderService;
 
     public CategoryDto save(CategoryDto categoryDto) {
         Category category = categoryMapper.toCategory(categoryDto);
@@ -28,6 +29,9 @@ public class CategoryService {
                     (p) -> category.setVersion(p.getVersion())
             );
         }
+        String oldTitle = categoryDto.getTitle();
+        String newTitle = categoryDto.getTitle();
+        jmsSenderService.sendAndReceiveMessage(oldTitle, newTitle);
         return categoryMapper.toCategoryDto(categoryDao.save(category));
     }
 
