@@ -29,8 +29,8 @@ public class ProductService {
 
     private final ProductDao productDao;
     private final CartDao cartDao;
-    private final JmsSenderService jmsSenderService;
-    private final ProductDto productDto;
+//    private final JmsSenderService jmsSenderService;
+//    private final ProductDto productDto;
 
     @Transactional(propagation = Propagation.NEVER, isolation = Isolation.DEFAULT)
     public long count() {
@@ -47,9 +47,9 @@ public class ProductService {
                 productFromDB.setCost(product.getCost());
                 productFromDB.setManufactureDate(product.getManufactureDate());
                 productFromDB.setStatus(product.getStatus());
-                BigDecimal oldCost = productDto.getCost();
-                BigDecimal newCost = productDto.getCost();
-                jmsSenderService.sendAndReceiveMessage(oldCost.toString(), newCost.toString());
+//                BigDecimal oldCost = productDto.getCost();
+//                BigDecimal newCost = productDto.getCost();
+//                jmsSenderService.sendAndReceiveMessage(oldCost.toString(), newCost.toString());
                 return productDao.save(productFromDB);
             }
         }

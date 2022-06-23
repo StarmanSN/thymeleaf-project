@@ -25,7 +25,7 @@ public class JmsSenderService {
     private final JmsTemplate jmsTemplate;
     private final ObjectMapper objectMapper;
 
-    @Scheduled(fixedRate = 5000)
+//    @Scheduled(fixedRate = 5000)
     public void sendAndReceiveMessage(String oldPrice, String newPrice) {
         CostChangeMessage message = CostChangeMessage.builder()
                 .message("Cost changed")
